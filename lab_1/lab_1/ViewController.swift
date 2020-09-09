@@ -17,7 +17,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var eyesImage: UIImageView!
     
     var count = 0
-    
+    //sources used for changing button title:
+    //https://stackoverflow.com/questions/26326296/changing-text-of-uibutton-programmatically-swift
+    //https://developer.apple.com/documentation/uikit/uibutton/1624018-settitle
     @IBAction func addFeatures(_ sender: UIButton) {
         if sender.tag == 1 && count == 0 {
             eyesImage.image = UIImage(named: "Eyes")
