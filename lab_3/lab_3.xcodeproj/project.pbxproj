@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3E09D950251AF2D200D0BC11 /* Strong_Brain.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3E09D94F251AF2D200D0BC11 /* Strong_Brain.otf */; };
+		3E1A5315251C8CD50017F88F /* Strong Brain.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3E1A5314251C8CD50017F88F /* Strong Brain.otf */; };
 		3EF93D31251ACFDB00BBA5A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF93D30251ACFDB00BBA5A5 /* AppDelegate.swift */; };
 		3EF93D33251ACFDB00BBA5A5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF93D32251ACFDB00BBA5A5 /* SceneDelegate.swift */; };
 		3EF93D35251ACFDB00BBA5A5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF93D34251ACFDB00BBA5A5 /* ViewController.swift */; };
@@ -17,7 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3E09D94F251AF2D200D0BC11 /* Strong_Brain.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Strong_Brain.otf; path = ../../../Downloads/Strong_Brain.otf; sourceTree = "<group>"; };
+		3E1A5314251C8CD50017F88F /* Strong Brain.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Strong Brain.otf"; path = "../../Strong Brain.otf"; sourceTree = SOURCE_ROOT; };
 		3EF93D2D251ACFDB00BBA5A5 /* lab_3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lab_3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EF93D30251ACFDB00BBA5A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3EF93D32251ACFDB00BBA5A5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -62,10 +62,10 @@
 				3EF93D32251ACFDB00BBA5A5 /* SceneDelegate.swift */,
 				3EF93D34251ACFDB00BBA5A5 /* ViewController.swift */,
 				3EF93D36251ACFDB00BBA5A5 /* Main.storyboard */,
+				3E1A5314251C8CD50017F88F /* Strong Brain.otf */,
 				3EF93D39251ACFDC00BBA5A5 /* Assets.xcassets */,
 				3EF93D3B251ACFDC00BBA5A5 /* LaunchScreen.storyboard */,
 				3EF93D3E251ACFDC00BBA5A5 /* Info.plist */,
-				3E09D94F251AF2D200D0BC11 /* Strong_Brain.otf */,
 			);
 			path = lab_3;
 			sourceTree = "<group>";
@@ -127,10 +127,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E1A5315251C8CD50017F88F /* Strong Brain.otf in Resources */,
 				3EF93D3D251ACFDC00BBA5A5 /* LaunchScreen.storyboard in Resources */,
 				3EF93D3A251ACFDC00BBA5A5 /* Assets.xcassets in Resources */,
 				3EF93D38251ACFDB00BBA5A5 /* Main.storyboard in Resources */,
-				3E09D950251AF2D200D0BC11 /* Strong_Brain.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

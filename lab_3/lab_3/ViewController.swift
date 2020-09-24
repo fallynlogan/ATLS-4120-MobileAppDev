@@ -20,22 +20,22 @@ class ViewController: UIViewController {
     @IBAction func pickFlower(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
             //Aster
-            flowerImage.image = UIImage(named: "aster")
+            flowerImage.image = UIImage(named: "Aster")
             flowerNameLabel.text = "ASTER"
         }
         else if sender.selectedSegmentIndex == 1 {
             //Pansy
-            flowerImage.image = UIImage(named: "pansy")
+            flowerImage.image = UIImage(named: "Pansy")
             flowerNameLabel.text = "PANSY"
         }
         else if sender.selectedSegmentIndex == 2 {
             //snapdragon
-            flowerImage.image = UIImage(named: "snapdragon")
+            flowerImage.image = UIImage(named: "Snapdragon")
             flowerNameLabel.text = "SNAPDRAGON"
         }
         else if sender.selectedSegmentIndex == 3 {
             //Anemone
-            flowerImage.image = UIImage(named: "anemone")
+            flowerImage.image = UIImage(named: "Anemone")
             flowerNameLabel.text = "ANEMONE"
         }
     }
