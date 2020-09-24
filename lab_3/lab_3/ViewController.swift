@@ -21,18 +21,22 @@ class ViewController: UIViewController {
         if sender.selectedSegmentIndex == 0 {
             //Aster
             flowerImage.image = UIImage(named: "aster")
+            flowerNameLabel.text = "ASTER"
         }
         else if sender.selectedSegmentIndex == 1 {
             //Pansy
             flowerImage.image = UIImage(named: "pansy")
+            flowerNameLabel.text = "PANSY"
         }
         else if sender.selectedSegmentIndex == 2 {
             //snapdragon
             flowerImage.image = UIImage(named: "snapdragon")
+            flowerNameLabel.text = "SNAPDRAGON"
         }
         else if sender.selectedSegmentIndex == 3 {
             //Anemone
             flowerImage.image = UIImage(named: "anemone")
+            flowerNameLabel.text = "ANEMONE"
         }
     }
     
@@ -42,10 +46,12 @@ class ViewController: UIViewController {
             day_nightLabel.text = "day"
             day_nightLabel.text = day_nightLabel.text?.uppercased()
             titleSizeLabel.text = titleSizeLabel.text?.uppercased()
+            flowerNameLabel.text = flowerNameLabel.text?.uppercased()
             header.textColor = UIColor.black
             day_nightLabel.textColor = UIColor.black
             titleSizeLabel.textColor = UIColor.black
             sizeNumberLabel.textColor = UIColor.black
+            flowerNameLabel.textColor = UIColor.black
             self.view.backgroundColor = #colorLiteral(red: 0.6842852831, green: 0.8219367862, blue: 1, alpha: 1)
             //self.view.backgroundColor = UIColor(red: 167.0, green: 232.0, blue: 255.0)
         } else {
@@ -53,10 +59,12 @@ class ViewController: UIViewController {
             day_nightLabel.text = "night"
             day_nightLabel.text = day_nightLabel.text?.lowercased()
             titleSizeLabel.text = titleSizeLabel.text?.lowercased()
+            flowerNameLabel.text = flowerNameLabel.text?.lowercased()
             header.textColor = UIColor.white
             day_nightLabel.textColor = UIColor.white
             titleSizeLabel.textColor = UIColor.white
             sizeNumberLabel.textColor = UIColor.white
+            flowerNameLabel.textColor = UIColor.white
             self.view.backgroundColor = UIColor.darkGray
         }
     }
