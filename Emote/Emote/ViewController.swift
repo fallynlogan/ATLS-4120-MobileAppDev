@@ -32,72 +32,81 @@ class ViewController: UIViewController, UITextFieldDelegate {
     let mehWords = ["Ashamed", "Confused", "Anxious", "Fearful"]
     let sadWords = ["Sad", "Uncertain", "Lonely", "Doubtful"]
     let angryWords = ["Angry", "Jealous", "Frustrated", "Resentful"]
+    var checkOrientationTimer = Timer()
+    var changeBackgroundTimer = Timer()
     
-    var didStartSpinning = false
-    var didStopSpinning = true
-    let motion = CMMotionManager()
-
-    func startAccelerometers() {
-       // Make sure the accelerometer hardware is available.
-       if self.motion.isAccelerometerAvailable {
-          self.motion.accelerometerUpdateInterval = 1.0 / 60.0  // 60 Hz
-          self.motion.startAccelerometerUpdates()
-
-          // Configure a timer to fetch the data.
-          self.timer = Timer(fire: Date(), interval: (1.0/60.0),
-                repeats: true, block: { (timer) in
-             // Get the accelerometer data.
-             if let data = self.motion.accelerometerData {
-                let x = data.acceleration.x
-                let y = data.acceleration.y
-                let z = data.acceleration.z
-
-                // Use the accelerometer data in your app.
-             }
-          })
-
-          // Add the timer to the current run loop.
-          RunLoop.current.add(self.timer!, forMode: .defaultRunLoopMode)
-       }
+    //site this source
+    func updateBackgroundColor(rgbValue:UInt32)->UIColor {
+        let alpha = 1.0
+        let r = CGFloat((rgbValue & 0xFF0000) >> 16)/256.0
+        let g = CGFloat((rgbValue & 0xFF00) >> 8)/256.0
+        let b = CGFloat(rgbValue & 0xFF)/256.0
+        return UIColor(red:r, green:g, blue:b, alpha:CGFloat(alpha))
     }
 
-    //site this source
-    func UIColorFromHex(rgbValue:UInt32)->UIColor {
-        let alpha = 1.0
-        let red = CGFloat((rgbValue & 0xFF0000) >> 16)/256.0
-        let green = CGFloat((rgbValue & 0xFF00) >> 8)/256.0
-        let blue = CGFloat(rgbValue & 0xFF)/256.0
-
-        return UIColor(red:red, green:green, blue:blue, alpha:CGFloat(alpha))
+    
+    func spinWheel() {
+        for _ in 1...10{
+            changeBackgroundTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(changeBackgroundFunc), userInfo: nil, repeats: false)
+        }
+    }
+    
+    @objc func changeBackgroundFunc() {
+        let yellow = updateBackgroundColor(rgbValue: 0xDBD26D)
+        let purple = updateBackgroundColor(rgbValue: 0x8A87E6)
+        let pink = updateBackgroundColor(rgbValue: 0xF08FD3)
+        let green = updateBackgroundColor(rgbValue: 0x5BB5A6)
+        let background = [yellow, pink, green, purple]
+        
+        var randomBackground = background.randomElement()
+        self.view.backgroundColor = randomBackground
     }
 
     func runGame() {
-        //make call to start accelorometors 
-        startButton.removeFromSuperview()
-        titleLabel.removeFromSuperview()
+        startButton.isHidden = true
+        titleLabel.isHidden = true
         //check if acceleration is zero from accelorometor
-        if didStopSpinning == true {
-            if UIDevice.current.orientation == UIDeviceOrientation.portrait {
-                self.view.backgroundColor = UIColorFromHex(rgbValue: 0xDBD26D)
-                faceImage.image = UIImage(named: "smile_icon")
-                emotionWordLabel.text = happyWords.randomElement()
-            }
-            else if UIDevice.current.orientation == UIDeviceOrientation.portraitUpsideDown {
-                self.view.backgroundColor = UIColorFromHex(rgbValue: 0x8A87E6)
-                faceImage.image = UIImage(named: "meh_icon")
-                emotionWordLabel.text = mehWords.randomElement()
-            }
-            else if UIDevice.current.orientation ==     UIDeviceOrientation.landscapeLeft {
-                self.view.backgroundColor = UIColorFromHex(rgbValue: 0xF08FD3)
-                faceImage.image = UIImage(named: "angry_icon")
-                emotionWordLabel.text = angryWords.randomElement()
-            
-            }
-            else if UIDevice.current.orientation == UIDeviceOrientation.landscapeRight {
-                self.view.backgroundColor = UIColorFromHex(rgbValue: 0x5BB5A6)
-                faceImage.image = UIImage(named: "frown_icon")
-                emotionWordLabel.text = sadWords.randomElement()
-            }
+        //spinWheel()
+        checkOrientationTimer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(checkOrientation), userInfo: nil, repeats: false)
+    }
+    
+    func resetGame() {
+        startButton.isHidden = false
+        titleLabel.isHidden = false
+        whatsYourNameLabel.isHidden = false
+        nameTextField.isHidden = false
+        hiLabel.text = "Hi there,"
+        self.view.backgroundColor =  updateBackgroundColor(rgbValue: 0x5BB5A6)
+        emotionWordLabel.text = " "
+        startButton.setTitle(" ",for: UIControl.State.normal)
+        tryAgainButton.setTitle(" ",for: UIControl.State.normal)
+    }
+    
+    @objc func checkOrientation(){
+        let yellow = updateBackgroundColor(rgbValue: 0xDBD26D)
+        let purple = updateBackgroundColor(rgbValue: 0x8A87E6)
+        let pink = updateBackgroundColor(rgbValue: 0xF08FD3)
+        let green = updateBackgroundColor(rgbValue: 0x5BB5A6)
+        
+        if UIDevice.current.orientation == UIDeviceOrientation.portrait {
+            self.view.backgroundColor = yellow
+            faceImage.image = UIImage(named: "smile_icon")
+            emotionWordLabel.text = happyWords.randomElement()
+        }
+        else if UIDevice.current.orientation == UIDeviceOrientation.portraitUpsideDown {
+            self.view.backgroundColor = purple
+            faceImage.image = UIImage(named: "meh_icon")
+            emotionWordLabel.text = mehWords.randomElement()
+        }
+        else if UIDevice.current.orientation == UIDeviceOrientation.landscapeLeft {
+            self.view.backgroundColor = pink
+            faceImage.image = UIImage(named: "angry_icon")
+            emotionWordLabel.text = angryWords.randomElement()
+        }
+        else if UIDevice.current.orientation == UIDeviceOrientation.landscapeRight {
+            self.view.backgroundColor = green
+            faceImage.image = UIImage(named: "frown_icon")
+            emotionWordLabel.text = sadWords.randomElement()
         }
     }
     
@@ -106,20 +115,20 @@ class ViewController: UIViewController, UITextFieldDelegate {
             runGame()
         }
         if sender.tag == 2 {
-           //restart back to initial view
+           resetGame()
         }
     }
     
     func editLabels() {
         if nameTextField.text!.isEmpty {
             let alert = UIAlertController(title: "Whoops!", message: "Looks like you forgot to add your name", preferredStyle: UIAlertController.Style.alert)
-            //change this so that keyboard pops back up
-            let addNameAction = UIAlertAction(title: "Add name", style: UIAlertAction.Style.default, handler: nil)
+            let addNameAction = UIAlertAction(title: "Add name", style: UIAlertAction.Style.default, handler:nil)
             alert.addAction(addNameAction)
             present(alert, animated: true, completion: nil)
-        } else {
-            whatsYourNameLabel.removeFromSuperview()
-            nameTextField.removeFromSuperview()
+        }
+        else {
+            whatsYourNameLabel.isHidden = true
+            nameTextField.isHidden = true
             hiLabel.text = "Hi, " + nameTextField.text!
             startButton.setTitle("start", for: UIControl.State.normal)
             tryAgainButton.setTitle("enter new name", for: UIControl.State.normal)
@@ -138,10 +147,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         nameTextField.delegate = self
-        
         super.viewDidLoad()
         self.hideKeyboard()
-        // Do any additional setup after loading the view.
     }
 
 
