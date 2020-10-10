@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import CoreMotion
 
 extension UIViewController {
     func hideKeyboard() {
@@ -32,8 +31,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
     let mehWords = ["Ashamed", "Confused", "Anxious", "Fearful"]
     let sadWords = ["Sad", "Uncertain", "Lonely", "Doubtful"]
     let angryWords = ["Angry", "Jealous", "Frustrated", "Resentful"]
+    var spinTimer = Timer()
     var checkOrientationTimer = Timer()
     var changeBackgroundTimer = Timer()
+    var hasStoppedSpinning = false
     
     //site this source
     func updateBackgroundColor(rgbValue:UInt32)->UIColor {
@@ -44,11 +45,23 @@ class ViewController: UIViewController, UITextFieldDelegate {
         return UIColor(red:r, green:g, blue:b, alpha:CGFloat(alpha))
     }
 
-    
     func spinWheel() {
-        for _ in 1...10{
-            changeBackgroundTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(changeBackgroundFunc), userInfo: nil, repeats: false)
-        }
+       titleLabel.isHidden = false
+       titleLabel.text = "Spin Your Device"
+       faceImage.image = UIImage(named: "spin_icon")
+       hiLabel.isHidden = true
+       spinTimer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(setSpinning), userInfo: nil, repeats: false)
+       UIView.animate(withDuration: 10, animations:  {
+        self.changeBackgroundTimer = Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(self.changeBackgroundFunc), userInfo: nil, repeats: true)
+        })
+    }
+    
+    @objc func setSpinning() {
+        titleLabel.isHidden = true
+        hiLabel.isHidden = false
+        checkOrientation()
+        changeBackgroundTimer.invalidate()
+        
     }
     
     @objc func changeBackgroundFunc() {
@@ -57,17 +70,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
         let pink = updateBackgroundColor(rgbValue: 0xF08FD3)
         let green = updateBackgroundColor(rgbValue: 0x5BB5A6)
         let background = [yellow, pink, green, purple]
-        
-        var randomBackground = background.randomElement()
+        let randomBackground = background.randomElement()
         self.view.backgroundColor = randomBackground
     }
 
     func runGame() {
         startButton.isHidden = true
         titleLabel.isHidden = true
-        //check if acceleration is zero from accelorometor
-        //spinWheel()
-        checkOrientationTimer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(checkOrientation), userInfo: nil, repeats: false)
+        spinWheel()
     }
     
     func resetGame() {
@@ -76,13 +86,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
         whatsYourNameLabel.isHidden = false
         nameTextField.isHidden = false
         hiLabel.text = "Hi there,"
+        titleLabel.text = "Emote"
         self.view.backgroundColor =  updateBackgroundColor(rgbValue: 0x5BB5A6)
         emotionWordLabel.text = " "
         startButton.setTitle(" ",for: UIControl.State.normal)
         tryAgainButton.setTitle(" ",for: UIControl.State.normal)
+        faceImage.image = UIImage(named: "smile_icon")
     }
     
-    @objc func checkOrientation(){
+    func checkOrientation(){
         let yellow = updateBackgroundColor(rgbValue: 0xDBD26D)
         let purple = updateBackgroundColor(rgbValue: 0x8A87E6)
         let pink = updateBackgroundColor(rgbValue: 0xF08FD3)
@@ -108,6 +120,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
             faceImage.image = UIImage(named: "frown_icon")
             emotionWordLabel.text = sadWords.randomElement()
         }
+        else {
+            let alert = UIAlertController(title: "Whoops!", message: "Looks like your device is not in the correct orientation, fix it and try again!", preferredStyle: UIAlertController.Style.alert)
+            let addNameAction = UIAlertAction(title: "Try again", style: UIAlertAction.Style.default, handler:nil)
+            alert.addAction(addNameAction)
+            present(alert, animated: true, completion: nil)        }
     }
     
     @IBAction func startTryAgainButton(_ sender: UIButton) {
