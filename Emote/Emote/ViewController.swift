@@ -8,6 +8,7 @@
 import UIKit
 
 extension UIViewController {
+    //source for this referenced in my Lab 4 ViewController.swift
     func hideKeyboard() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
@@ -36,7 +37,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     var changeBackgroundTimer = Timer()
     var hasStoppedSpinning = false
     
-    //site this source
+    //Source: https://coderwall.com/p/6rfitq/ios-ui-colors-with-hex-values-in-swfit
     func updateBackgroundColor(rgbValue:UInt32)->UIColor {
         let alpha = 1.0
         let r = CGFloat((rgbValue & 0xFF0000) >> 16)/256.0
@@ -50,8 +51,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
        titleLabel.text = "Spin Your Device"
        faceImage.image = UIImage(named: "spin_icon")
        hiLabel.isHidden = true
+       //sources referenced: class notes & https://codewithchris.com/swift-timer/
        spinTimer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(setSpinning), userInfo: nil, repeats: false)
-       UIView.animate(withDuration: 10, animations:  {
+       //sources referenced: class notes & apple docs https://developer.apple.com/documentation/uikit/uiview/1622418-animate
+        UIView.animate(withDuration: 10, animations:  {
         self.changeBackgroundTimer = Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(self.changeBackgroundFunc), userInfo: nil, repeats: true)
         })
     }
@@ -70,6 +73,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         let pink = updateBackgroundColor(rgbValue: 0xF08FD3)
         let green = updateBackgroundColor(rgbValue: 0x5BB5A6)
         let background = [yellow, pink, green, purple]
+        //source referenced: https://developer.apple.com/documentation/swift/array/2994747-randomelement
         let randomBackground = background.randomElement()
         self.view.backgroundColor = randomBackground
     }
