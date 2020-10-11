@@ -1,1 +1,3 @@
 # Emote #
+
+Emote is an iOS application geared toward iPad's & larger screened iPhones. The purpose of Emote is to introduce theraputic play techniques to parents and children with the hopes of bettering their emotional intelligence and communication skills. Children and parents start by spinning a wheel (the tablet/phone). After a certain amount of time has elapsed the game checks to see which orientation the phone is in after its spin and displays an emotion word on the screen that corresponds to its orientation (ie portrait displays "happy" words). Parents and children can interchange who is playing by adding their name to the "start" screen then presssing play and spin, it's that easy! 
