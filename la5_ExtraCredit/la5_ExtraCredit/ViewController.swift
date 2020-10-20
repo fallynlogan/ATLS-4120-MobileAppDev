@@ -11,6 +11,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var mountainNameLabel: UILabel!
     @IBOutlet weak var ridingTypeLabel: UILabel!
     @IBOutlet weak var favoriteTrailLabel: UILabel!
+    
     var user = Favorite()
     
     

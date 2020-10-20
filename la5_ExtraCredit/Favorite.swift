@@ -10,6 +10,6 @@ import Foundation
 class Favorite
 {
     var mountainName : String?
-    var ridingType : String?
+    var ridingType = "Skiing"
     var favTrail : String?
 }

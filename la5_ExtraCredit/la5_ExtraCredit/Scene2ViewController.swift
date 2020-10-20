@@ -7,18 +7,6 @@
 
 import UIKit
 
-extension UIViewController
-{
-    func hideKeyboard()
-    {
-        let tap = UIGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        view.addGestureRecognizer(tap)
-    }
-    @objc func dismissKeyboard()
-    {
-        view.endEditing(true)
-    }
-}
 
 class Scene2ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var mountainNameTextField: UITextField!
@@ -63,8 +51,6 @@ class Scene2ViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         mountainNameTextField.delegate = self
         favoriteRunTextField.delegate = self
-        self.hideKeyboard();
-        
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
