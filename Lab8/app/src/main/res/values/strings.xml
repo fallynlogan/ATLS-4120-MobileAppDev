@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Lab8</string>
+    <string name="titleText">Math Madlib!</string>
+    <string name="answer1">5</string>
+    <string name="answer2">14</string>
+    <string name="answer3">7</string>
+    <string name="answer4">6</string>
+    <string name="answerButton">Check Answer</string>
+    <string name="question">16 - 9 = ?</string>
+    <string name="mathCheckbox">gigantic</string>
+    <string name="readingCheckbox">small</string>
+    <string name="subjectText" />
+    <string name="subject_Text">Pick some adjectives:</string>
+    <string name="check3">furry</string>
+    <string name="check4">slimey</string>
+    <string name="pickerText">Pick a noun:</string>
+    <string name="verbText">Pick a verb:</string>
+    <string name="catapulted">catapulted</string>
+    <string name="married">married</string>
+    <string-array name="nouns">
+        <item>beach balls</item>
+        <item>camels</item>
+        <item>bicycles</item>
+        <item>math homeworks</item>
+        <item>boogers</item>
+    </string-array>
+</resources>
