@@ -9,6 +9,7 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+    var message:String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -54,7 +55,7 @@ class MainActivity : AppCompatActivity() {
                     } else {
                         "catapulted"
                     }
-                    questionTextView.text = "You had $num1 $wordList $noun, then you $verb $num2  and only had $answer"
+                    message = "You had $num1 $wordList $noun, then you $verb $num2  and only had $answer"
                 } else {
                     val correctSnackbar = Snackbar.make(root_layout, "Answer incorrect, please try again.", Snackbar.LENGTH_SHORT)
                     correctSnackbar.show()
@@ -69,10 +70,27 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     "catapulted"
                 }
-                questionTextView.text = "You had $num1 $noun, then you $verb $num2 and only had $answer"
+                message = "You had $num1 $noun, then you $verb $num2 and only had $answer"
             }
 
-
         }
+
+        updateUI()
+    }
+
+    fun updateUI()
+    {
+        questionTextView.text = message
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putString("message", message)
+        super.onSaveInstanceState(outState)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        message = savedInstanceState.getString("message", "")
+        updateUI()
     }
 }
